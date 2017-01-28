@@ -1,16 +1,17 @@
 // DIShihara Generation Test
 
+// Settings
 float minSize = 4;
 float maxSize = 24;
-int nTries = 1000;
-ArrayList<Circle> circleList;
-
-LetterDSmall letterDSmall;
-
+int nTries = 10000;
 color orange = color(255, 128, 0);
 color orange2 = color(255, 192, 64);
 color pink = color(251, 65, 236);
 color pink2 = color(250, 146, 231);
+
+// Other
+ArrayList<Circle> circleList;
+LetterDSmall letterDSmall;
 
 void settings() {
   size(500, 500, P2D);
@@ -66,8 +67,8 @@ void setup() {
       // Set Style
       Style style = new Style();
       style.fillColor = chooseColor(orange, orange2);
-      if (letterDSmall.containsPoint(x, y, diameter * 0.25)) {
-        style.fillColor = random(1.0) < 0.5 ? pink : pink2;
+      if (letterDSmall.containsPoint(x, y, diameter * 0.125)) {
+        style.fillColor = chooseColor(pink, pink2);
       }
       style.doStroke = false;
       circle.style = style;
@@ -76,40 +77,7 @@ void setup() {
       tryCount = 0;
     }
   } while (tryCount< nTries);
-
-
-  // for (Circle c : letterDSmall.toCircleList()) {
-  //   // c.style.doFill = false;
-  //   c.style.doStroke = false;
-  //   c.style.fillColor = pink;
-  //   circleList.add(c);
-  // }
-
-  // Sort
-  // ArrayList<Circle> sorted = new ArrayList<Circle>();
-  //
-  // Circle c = circleList.remove(0);
-  // sorted.add(c);
-  //
-  // while (circleList.size() > 0) {
-  //   float distance = width;
-  //   int index = 0;
-  //   for (int i = 0; i < circleList.size(); i++) {
-  //     Circle c1 = (Circle) circleList.get(i);
-  //     float d = dist(c.x, c.y, c1.x, c1.y);
-  //     if (d < distance) {
-  //       index = i;
-  //       distance = d;
-  //     }
-  //   }
-  //   c = circleList.remove(index);
-  //   sorted.add(c);
-  // }
-  //
-  // circleList = sorted;
 }
-
-int f = 0;
 
 void draw() {
   background(0);

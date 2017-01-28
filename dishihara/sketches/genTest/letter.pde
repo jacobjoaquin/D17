@@ -88,37 +88,3 @@ class LetterDSmall extends Letter {
     return list;
   }
 }
-
-// String[] disorientD = {
-//   "xxxx ",
-//   "x   x",
-//   "x   x",
-//   "xxxx "
-// };
-//
-// ArrayList<Circle> createD(PVector p, float w) {
-//   float s = w / (float) disorientD[0].length();
-//   float xOffset = p.x - s * 2.5 + s / 2.0;
-//   float yOffset = p.y - s * 2 + s / 2.0;
-//
-//   ArrayList<Circle> list = new ArrayList<Circle>();
-//
-//
-//   for (int y = 0; y < 4; y++) {
-//     for (int x = 0; x < disorientD[y].length(); x++) {
-//       PVector position = new PVector(x * s + xOffset, y * s + yOffset);
-//       char dot = disorientD[y].charAt(x);
-//       if (dot == 'x') {
-//         Style style = new Style();
-//         style.fillColor = pink;
-//         style.doStroke = true;
-//
-//         Circle circle = new Circle(position, s * 0.9);
-//         circle.style = style;
-//         list.add(circle);
-//       }
-//     }
-//   }
-//
-//   return list;
-// }

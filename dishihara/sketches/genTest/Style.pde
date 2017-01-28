@@ -9,7 +9,7 @@ class Style {
   Style() {};
 
   Style(color fillColor, color strokeColor) {
-    this.fillColor = f;
+    this.fillColor = fillColor;
     this.strokeColor = strokeColor;
   }
 
