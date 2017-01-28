@@ -1,9 +1,9 @@
 // DIShihara Generation Test
 
 // Settings
-float minSize = 4;
+float minSize = 10;
 float maxSize = 24;
-int nTries = 1000;
+int nTries = 80000;
 color orange = color(255, 128, 0);
 color orange2 = color(255, 192, 64);
 color pink = color(251, 65, 236);
@@ -34,18 +34,16 @@ void setup() {
     c.style.fillColor = chooseColor(pink, pink2);
     circleList.add(c);
   }
-  circleList.addAll(letterDSmall.toCircleList());
 
   // Create other circles
   circleFill(circleList);
 }
 
 void draw() {
-  background(0);
+  background(16);
   noLoop();
   for (Circle c : circleList) {
     c.display();
   }
-
   save("./output/latest.png");
 }
