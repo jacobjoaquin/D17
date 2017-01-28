@@ -29,9 +29,9 @@ void setup() {
   // Add small D
   letterDSmall.setCircleRatio(0.9);
   for (Circle c : letterDSmall.toCircleList()) {
-    // c.style.doFill = false;
     c.style.doStroke = false;
-    c.style.fillColor = chooseColor(pink, pink2);
+    // c.style.fillColor = chooseColor(pink, pink2);
+    c.style.fillColor = pink;
     circleList.add(c);
   }
 

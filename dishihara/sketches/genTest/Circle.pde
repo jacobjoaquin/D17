@@ -21,8 +21,20 @@ class Circle {
 
   void display() {
     style.begin();
+    // Circle
     float d = diameter;
     ellipse(x, y, d * drawRatio, d * drawRatio);
+
+    // Draw as polygon
+    // int nSides = 5;
+    // float r = diameter * 0.5 * drawRatio;
+    // beginShape();
+    // for (int i = 0; i < nSides; i++) {
+    //   PVector p = PVector.fromAngle(i / (float) nSides * TAU + TAU / 50.0).mult(r).add(x, y);
+    //   vertex(p.x, p.y);
+    // }
+    // endShape(CLOSE);
+    //
     style.end();
   }
 }
@@ -60,39 +72,39 @@ void circleFill(ArrayList<Circle> circleList) {
 
 
       // Move to closest
-      Circle closestCircle = circleList.get(0);
-      float closestDistance = circle.distToCircle(closestCircle);
-      for (int i = 1; i < circleList.size(); i++) {
-        Circle c = circleList.get(i);
-        float thisD = circle.distToCircle(c);
-        if (thisD < closestDistance) {
-          closestCircle = c;
-          closestDistance = thisD;
+      if (circleList.size() > 0) {
+        Circle closestCircle = circleList.get(0);
+        float closestDistance = circle.distToCircle(closestCircle);
+        for (int i = 1; i < circleList.size(); i++) {
+          Circle c = circleList.get(i);
+          float thisD = circle.distToCircle(c);
+          if (thisD < closestDistance) {
+            closestCircle = c;
+            closestDistance = thisD;
+          }
+        }
+        if (closestDistance > 0 && closestDistance < maxSize * 10) {
+          float angle = atan2(y - closestCircle.y, x - closestCircle.x);
+          PVector move = PVector.fromAngle(angle).mult(-closestDistance);
+          circle.x += move.x;
+          circle.y += move.y;
         }
       }
-      if (closestDistance > 0 && closestDistance < maxSize * 10) {
-        float angle = atan2(y - closestCircle.y, x - closestCircle.x);
-        PVector move = PVector.fromAngle(angle).mult(-closestDistance);
-        circle.x += move.x;
-        circle.y += move.y;
-      }
-
-
 
       // Set Style
       Style style = new Style();
       style.fillColor = chooseColor(orange, orange2);
-      // if (letterDSmall.containsPoint(x, y, diameter * 0.125)) {
+      // if (letterDSmall.containsPoint(x, y, diameter * 0.25)) {
       //   style.fillColor = chooseColor(pink, pink2);
       // }
       style.doStroke = false;
       circle.style = style;
 
-      circle.drawRatio = 0.8;
+      // circle.drawRatio = 0.5;
       circleList.add(circle);
       tryCount = 0;
     }
-  } while (tryCount< nTries);
+    } while (tryCount< nTries);
 
-  println(circleList.size());
-}
+    println(circleList.size());
+  }
