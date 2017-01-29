@@ -82,26 +82,24 @@ void draw() {
   // updatePixels();
 
   // Shape testing
-  PShape group = vg.getChild(0).getChild(0);
-  int nChild = group.getChildCount();
-
-  pushStyle();
-  noStroke();
-  fill(pink);
-  for (int i = 0; i < nChild; i++) {
-    PShape child = group.getChild(i);
-    int nVertices = child.getVertexCount();
-    println("v: " + nVertices);
-
-    beginShape();
-    for (int j = 0; j < nVertices; j++) {
-      PVector p = child.getVertex(j);
-      println(p);
-      vertex(p.x * 0.5, p.y * 0.5);
-    }
-    endShape(CLOSE);
-  }
-  popStyle();
+  // PShape group = vg.getChild(0).getChild(0);
+  // int nChild = group.getChildCount();
+  //
+  // pushStyle();
+  // noStroke();
+  // fill(pink);
+  // for (int i = 0; i < nChild; i++) {
+  //   PShape child = group.getChild(i);
+  //   int nVertices = child.getVertexCount();
+  //   beginShape();
+  //   for (int j = 0; j < nVertices; j++) {
+  //     PVector p = child.getVertex(j);
+  //     println(p);
+  //     vertex(p.x * 0.5, p.y * 0.5);
+  //   }
+  //   endShape(CLOSE);
+  // }
+  // popStyle();
 
   save("./output/latest.png");
   println("Render complete");

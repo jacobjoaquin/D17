@@ -109,6 +109,14 @@ void circleFill(ArrayList<Circle> circleList) {
       //   style.fillColor = chooseColor(pink, pink2);
       // }
 
+      // Color from PShape
+      // DOESN'T WORK
+      // boolean b = vg.contains(circle.x, circle.y);
+      // if (b) {
+      //   style.fillColor = chooseColor(pink, pink2);
+      // }
+
+
       style.doStroke = false;
       circle.style = style;
 
