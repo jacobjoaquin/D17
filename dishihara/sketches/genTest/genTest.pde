@@ -1,9 +1,9 @@
 // DIShihara Generation Test
 
 // Settings
-float minSize = 10;
-float maxSize = 24;
-int nTries = 80000;
+float minSize = 5;
+float maxSize = 25;
+int nTries = 1000;
 color orange = color(255, 128, 0);
 color orange2 = color(255, 192, 64);
 color pink = color(251, 65, 236);
@@ -11,7 +11,7 @@ color pink2 = color(250, 146, 231);
 
 // Other
 ArrayList<Circle> circleList;
-LetterDSmall letterDSmall;
+Letter letter;
 
 void settings() {
   size(500, 500, P2D);
@@ -24,11 +24,13 @@ void setup() {
   circleList = new ArrayList<Circle>();
 
   // Create Disorient "D" Goes Here
-  letterDSmall = new LetterDSmall(center, width * 0.6);
+  // letter = new LetterDSmall(center, width * 0.6);
+  // letter = new LetterDLarge(center, width * 0.6);
+  letter = new Letter17(center, width * 0.6);
 
   // Add small D
-  letterDSmall.setCircleRatio(0.9);
-  for (Circle c : letterDSmall.toCircleList()) {
+  letter.setCircleRatio(0.9);
+  for (Circle c : letter.toCircleList()) {
     c.style.doStroke = false;
     // c.style.fillColor = chooseColor(pink, pink2);
     c.style.fillColor = pink;

@@ -83,7 +83,7 @@ void circleFill(ArrayList<Circle> circleList) {
             closestDistance = thisD;
           }
         }
-        if (closestDistance > 0 && closestDistance < maxSize * 10) {
+        if (closestDistance > 0 && closestDistance < maxSize * 4) {
           float angle = atan2(y - closestCircle.y, x - closestCircle.x);
           PVector move = PVector.fromAngle(angle).mult(-closestDistance);
           circle.x += move.x;
@@ -100,11 +100,11 @@ void circleFill(ArrayList<Circle> circleList) {
       style.doStroke = false;
       circle.style = style;
 
-      // circle.drawRatio = 0.5;
+      circle.drawRatio = 0.95;
       circleList.add(circle);
       tryCount = 0;
     }
-    } while (tryCount< nTries);
+    } while (tryCount < nTries);
 
     println(circleList.size());
   }

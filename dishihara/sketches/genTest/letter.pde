@@ -1,31 +1,14 @@
 abstract class Letter {
-  private String[] data;
-  int w;
-  int h;
-}
-
-class LetterDSmall extends Letter {
   PVector position;
 
-  private float circleRatio = 0.9;
-  private float letterWidth;
-  private float tile;
-  private float tileSize;
-  private ArrayList<String> letter = new ArrayList<String>();
-  private int w;
-  private int h;
-
-  LetterDSmall(PVector position, float letterWidth) {
-    this.position = position;
-    this.letterWidth = letterWidth;
-    letter.add("xxxx ");
-    letter.add("x   x");
-    letter.add("x   x");
-    letter.add("xxxx ");
-    w = letter.get(0).length();
-    h = letter.size();
-    tileSize = letterWidth / (float) w;
-  }
+  protected String[] data;
+  protected float circleRatio = 0.9;
+  protected float letterWidth;
+  protected float tile;
+  protected float tileSize;
+  protected ArrayList<String> letter = new ArrayList<String>();
+  protected int w;
+  protected int h;
 
   void setCircleRatio(float circleRatio) {
     this.circleRatio = circleRatio;
@@ -86,5 +69,55 @@ class LetterDSmall extends Letter {
     }
 
     return list;
+  }
+}
+
+class LetterDSmall extends Letter {
+  LetterDSmall(PVector position, float letterWidth) {
+    this.position = position;
+    this.letterWidth = letterWidth;
+    letter.add("xxxx ");
+    letter.add("x   x");
+    letter.add("x   x");
+    letter.add("xxxx ");
+    w = letter.get(0).length();
+    h = letter.size();
+    tileSize = letterWidth / (float) w;
+  }
+}
+
+class LetterDLarge extends Letter {
+  LetterDLarge(PVector position, float letterWidth) {
+    this.position = position;
+    this.letterWidth = letterWidth;
+    letter.add("xxxxxxxxx ");
+    letter.add("xxxxxxxxxx");
+    letter.add("xx      xx");
+    letter.add("xx      xx");
+    letter.add("xx      xx");
+    letter.add("xxxxxxxxxx");
+    letter.add("xxxxxxxxx ");
+    w = letter.get(0).length();
+    h = letter.size();
+    tileSize = letterWidth / (float) w;
+  }
+}
+
+
+class Letter17 extends Letter {
+  Letter17(PVector position, float letterWidth) {
+    this.position = position;
+    this.letterWidth = letterWidth;
+    letter.add("xx  xxxxxxxxx ");
+    letter.add("xxx xxxxxxxxxx");
+    letter.add(" xx         xx");
+    letter.add(" xx         xx");
+    letter.add(" xx         xx");
+    letter.add(" xx         xx");
+    letter.add(" xx         xx");
+    letter.add(" xx         xx");
+    w = letter.get(0).length();
+    h = letter.size();
+    tileSize = letterWidth / (float) w;
   }
 }
