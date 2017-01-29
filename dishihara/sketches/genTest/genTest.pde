@@ -1,9 +1,9 @@
 // DIShihara Generation Test
 
 // Settings
-float minSize = 10;
+float minSize = 5;
 float maxSize = 25;
-int nTries = 100;
+int nTries = 80000;
 color orange = color(255, 128, 0);
 color orange2 = color(255, 192, 64);
 color pink = color(251, 65, 236);
@@ -13,7 +13,6 @@ String vgName = "./assets/bmlogoTraced.svg";
 
 // Other
 ArrayList<Circle> circleList;
-ArrayList<Line> lineList;
 VectorGraphic vectorGraphic;
 Letter letter;
 PImage img;
@@ -89,11 +88,12 @@ void draw() {
   // updatePixels();
 
   // VectorGraphic testing
+  // stroke(pink, 64);
+  // strokeWeight(1);
+  // vectorGraphic.displayLineList();
+  fill(pink);
+  noStroke();
   vectorGraphic.display();
-
-  // Test closest line
-  stroke(255, 32);
-  line(0, 0, width, height);
 
   save("./output/latest.png");
   println("Render complete");

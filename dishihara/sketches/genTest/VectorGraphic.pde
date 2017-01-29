@@ -1,3 +1,7 @@
+// class VectorGraphicList extends ArrayList<VectorGraphic> {
+//
+// }
+
 class VectorGraphic {
   PShape pshape;
   PGraphics pg;
@@ -6,6 +10,29 @@ class VectorGraphic {
   VectorGraphic(PShape pshape) {
     this.pshape = pshape;
     toLineList();
+  }
+
+  PVector getClosestPoint(float x, float y) {
+    if (lineList.size() > 0) {
+      PVector closest = lineList.get(0).p0.copy();
+      float distance = dist(x, y, closest.x, closest.y);
+      for (Line line : lineList) {
+        PVector p = getClosestPointOnSegment(line.p0.x, line.p0.y, line.p1.x, line.p1.y, x, y);
+        float d = dist(p.x, p.y, x, y);
+        if (d < distance) {
+          distance = d;
+          closest = p;
+        }
+      }
+
+      return closest;
+    }
+
+    return null;
+  }
+
+  PVector getClosestPoint(PVector p) {
+    return getClosestPoint(p.x, p.y);
   }
 
   private void toLineList() {
@@ -33,12 +60,28 @@ class VectorGraphic {
   private void toPGraphics() {
   }
 
-  void display() {
-    pushStyle();
-    stroke(255, 64);
+  void displayLineList() {
     for (Line line : lineList) {
       line.display();
     }
-    popStyle();
+  }
+
+  void display() {
+    PShape group = pshape;
+    int nChild = group.getChildCount();
+
+    for (int i = 0; i < nChild; i++) {
+      PShape child = group.getChild(i);
+      int nVertices = child.getVertexCount();
+
+      if (nVertices > 1) {
+        beginShape();
+        for (int j = 0; j < nVertices; j++) {
+          PVector p = child.getVertex(j).mult(0.5);
+          vertex(p.x, p.y);
+        }
+        endShape(CLOSE);
+      }
+    }
   }
 }
