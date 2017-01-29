@@ -8,19 +8,21 @@ color orange = color(255, 128, 0);
 color orange2 = color(255, 192, 64);
 color pink = color(251, 65, 236);
 color pink2 = color(250, 146, 231);
+String imgName = "./assets/bmlogofill.png";
+String vgName = "./assets/bmlogoTraced.svg";
 
 // Other
 ArrayList<Circle> circleList;
+ArrayList<Line> lineList;
+VectorGraphic vectorGraphic;
 Letter letter;
-String imgName = "./assets/bmlogofill.png";
 PImage img;
 PGraphics pg;
-String vgName = "./assets/bmlogoTraced.svg";
 PShape vg;
 
 void settings() {
   size(500, 500, P2D);
-  // pixelDensity(displayDensity());
+  pixelDensity(displayDensity());
 }
 
 void setup() {
@@ -43,6 +45,11 @@ void setup() {
 
   // Setup SVG
   vg = loadShape(vgName);
+
+  // Setup VectorGraphic
+  vectorGraphic = new VectorGraphic(vg.getChild(0).getChild(0));
+
+
 
   // Create Disorient "D" Goes Here
   // letter = new LetterDSmall(center, width * 0.6);
@@ -81,25 +88,8 @@ void draw() {
   // }
   // updatePixels();
 
-  // Shape testing
-  // PShape group = vg.getChild(0).getChild(0);
-  // int nChild = group.getChildCount();
-  //
-  // pushStyle();
-  // noStroke();
-  // fill(pink);
-  // for (int i = 0; i < nChild; i++) {
-  //   PShape child = group.getChild(i);
-  //   int nVertices = child.getVertexCount();
-  //   beginShape();
-  //   for (int j = 0; j < nVertices; j++) {
-  //     PVector p = child.getVertex(j);
-  //     println(p);
-  //     vertex(p.x * 0.5, p.y * 0.5);
-  //   }
-  //   endShape(CLOSE);
-  // }
-  // popStyle();
+  // VectorGraphic testing
+  vectorGraphic.display();
 
   // Test closest line
   stroke(255, 32);
