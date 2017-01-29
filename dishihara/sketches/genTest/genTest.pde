@@ -15,6 +15,8 @@ Letter letter;
 String imgName = "./assets/bmlogofill.png";
 PImage img;
 PGraphics pg;
+String vgName = "./assets/bmlogoTraced.svg";
+PShape vg;
 
 void settings() {
   size(500, 500, P2D);
@@ -38,6 +40,9 @@ void setup() {
   pg.image(img, width / 2.0, height / 2.0, width * r * s, height * s);
   pg.endDraw();
   pg.loadPixels();
+
+  // Setup SVG
+  vg = loadShape(vgName);
 
   // Create Disorient "D" Goes Here
   // letter = new LetterDSmall(center, width * 0.6);
@@ -65,12 +70,7 @@ void draw() {
     c.display();
   }
 
-  // pg.loadPixels();
-  // println(pg.pixels[0]);
-  // blendMode(MULTIPLY);
-  // image(pg, 0, 0, width, height);
-  // blendMode(BLEND);
-
+  // Image testing
   // int l = width * height;
   // loadPixels();
   // for (int i = 0; i < l; i++) {
@@ -81,7 +81,28 @@ void draw() {
   // }
   // updatePixels();
 
-  // image(img, 0, 0, width, height);
+  // Shape testing
+  PShape group = vg.getChild(0).getChild(0);
+  int nChild = group.getChildCount();
+
+  pushStyle();
+  noStroke();
+  fill(pink);
+  for (int i = 0; i < nChild; i++) {
+    PShape child = group.getChild(i);
+    int nVertices = child.getVertexCount();
+    println("v: " + nVertices);
+
+    beginShape();
+    for (int j = 0; j < nVertices; j++) {
+      PVector p = child.getVertex(j);
+      println(p);
+      vertex(p.x * 0.5, p.y * 0.5);
+    }
+    endShape(CLOSE);
+  }
+  popStyle();
+
   save("./output/latest.png");
   println("Render complete");
 }

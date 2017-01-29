@@ -102,12 +102,12 @@ void circleFill(ArrayList<Circle> circleList) {
       // }
 
       // Color from Image
-      int pixelIndex = (int) ((int) circle.x + (int) circle.y * width);
-      int pixel = pg.pixels[pixelIndex];
-      float b = brightness(pixel);
-      if (b < 30) {
-        style.fillColor = chooseColor(pink, pink2);
-      }
+      // int pixelIndex = (int) ((int) circle.x + (int) circle.y * width);
+      // int pixel = pg.pixels[pixelIndex];
+      // float b = brightness(pixel);
+      // if (b < 30) {
+      //   style.fillColor = chooseColor(pink, pink2);
+      // }
 
       style.doStroke = false;
       circle.style = style;
