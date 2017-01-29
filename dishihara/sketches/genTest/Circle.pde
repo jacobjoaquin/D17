@@ -65,31 +65,43 @@ void circleFill(ArrayList<Circle> circleList) {
       }
     }
 
+
+    // Check against line
+    for (Circle c : circleList) {
+      PVector nearest = getClosestPointOnSegment(0, 0, width, height, x, y);
+      // println(nearest);
+      float thisD = dist(nearest.x, nearest.y, x, y);
+      if (thisD < d) {
+        d = thisD;
+      }
+    }
+
+
+
     if (d >= minSize) {
       diameter = min(d * 2, random(minSize, maxSize));
       diameter = min(diameter, maxSize);
       Circle circle = new Circle(x, y, diameter);
 
-
       // Move to closest
-      if (circleList.size() > 0) {
-        Circle closestCircle = circleList.get(0);
-        float closestDistance = circle.distToCircle(closestCircle);
-        for (int i = 1; i < circleList.size(); i++) {
-          Circle c = circleList.get(i);
-          float thisD = circle.distToCircle(c);
-          if (thisD < closestDistance) {
-            closestCircle = c;
-            closestDistance = thisD;
-          }
-        }
-        if (closestDistance > 0 && closestDistance < maxSize * 4) {
-          float angle = atan2(y - closestCircle.y, x - closestCircle.x);
-          PVector move = PVector.fromAngle(angle).mult(-closestDistance);
-          circle.x += move.x;
-          circle.y += move.y;
-        }
-      }
+      // if (circleList.size() > 0) {
+      //   Circle closestCircle = circleList.get(0);
+      //   float closestDistance = circle.distToCircle(closestCircle);
+      //   for (int i = 1; i < circleList.size(); i++) {
+      //     Circle c = circleList.get(i);
+      //     float thisD = circle.distToCircle(c);
+      //     if (thisD < closestDistance) {
+      //       closestCircle = c;
+      //       closestDistance = thisD;
+      //     }
+      //   }
+      //   if (closestDistance > 0 && closestDistance < maxSize * 4) {
+      //     float angle = atan2(y - closestCircle.y, x - closestCircle.x);
+      //     PVector move = PVector.fromAngle(angle).mult(-closestDistance);
+      //     circle.x += move.x;
+      //     circle.y += move.y;
+      //   }
+      // }
 
       // Set Style
       Style style = new Style();

@@ -1,9 +1,9 @@
 // DIShihara Generation Test
 
 // Settings
-float minSize = 5;
+float minSize = 10;
 float maxSize = 25;
-int nTries = 1000;
+int nTries = 100;
 color orange = color(255, 128, 0);
 color orange2 = color(255, 192, 64);
 color pink = color(251, 65, 236);
@@ -100,6 +100,9 @@ void draw() {
   //   endShape(CLOSE);
   // }
   // popStyle();
+
+  stroke(255, 32);
+  line(0, 0, width, height);
 
   save("./output/latest.png");
   println("Render complete");
