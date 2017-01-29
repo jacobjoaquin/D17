@@ -14,6 +14,14 @@ abstract class Letter {
     this.circleRatio = circleRatio;
   }
 
+  protected void init(PVector position, float letterWidth) {
+    this.position = position;
+    this.letterWidth = letterWidth;
+    w = letter.get(0).length();
+    h = letter.size();
+    tileSize = letterWidth / (float) w;
+  }
+
   boolean containsPoint(float x1, float y1, float variance) {
     float xOffset = position.x - tileSize * (float) w / 2.0;
     float yOffset = position.y - tileSize * (float) h / 2.0;
@@ -74,22 +82,16 @@ abstract class Letter {
 
 class LetterDSmall extends Letter {
   LetterDSmall(PVector position, float letterWidth) {
-    this.position = position;
-    this.letterWidth = letterWidth;
     letter.add("xxxx ");
     letter.add("x   x");
     letter.add("x   x");
     letter.add("xxxx ");
-    w = letter.get(0).length();
-    h = letter.size();
-    tileSize = letterWidth / (float) w;
+    init(position, letterWidth);
   }
 }
 
 class LetterDLarge extends Letter {
   LetterDLarge(PVector position, float letterWidth) {
-    this.position = position;
-    this.letterWidth = letterWidth;
     letter.add("xxxxxxxxx ");
     letter.add("xxxxxxxxxx");
     letter.add("xx      xx");
@@ -97,17 +99,13 @@ class LetterDLarge extends Letter {
     letter.add("xx      xx");
     letter.add("xxxxxxxxxx");
     letter.add("xxxxxxxxx ");
-    w = letter.get(0).length();
-    h = letter.size();
-    tileSize = letterWidth / (float) w;
+    init(position, letterWidth);
   }
 }
 
 
 class Letter17 extends Letter {
   Letter17(PVector position, float letterWidth) {
-    this.position = position;
-    this.letterWidth = letterWidth;
     letter.add("xx  xxxxxxxxx ");
     letter.add("xxx xxxxxxxxxx");
     letter.add(" xx         xx");
@@ -116,8 +114,20 @@ class Letter17 extends Letter {
     letter.add(" xx         xx");
     letter.add(" xx         xx");
     letter.add(" xx         xx");
-    w = letter.get(0).length();
-    h = letter.size();
-    tileSize = letterWidth / (float) w;
+    init(position, letterWidth);
+  }
+}
+
+class Letter2017 extends Letter {
+  Letter2017(PVector position, float letterWidth) {
+    letter.add("xxxxxxxxx   xxxxxxxx  xx  xxxxxxxxx ");
+    letter.add("xxxxxxxxxx xxxxxxxxxx xxx xxxxxxxxxx");
+    letter.add("        xx xx      xx  xx         xx");
+    letter.add(" xxxxxxxxx xx      xx  xx         xx");
+    letter.add("xxxxxxxxx  xx      xx  xx         xx");
+    letter.add("xx         xx      xx  xx         xx");
+    letter.add("xxxxxxxxxx xxxxxxxxxx  xx         xx");
+    letter.add("xxxxxxxxxx  xxxxxxxx   xx         xx");
+    init(position, letterWidth);
   }
 }

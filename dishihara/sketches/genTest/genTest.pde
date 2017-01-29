@@ -26,7 +26,8 @@ void setup() {
   // Create Disorient "D" Goes Here
   // letter = new LetterDSmall(center, width * 0.6);
   // letter = new LetterDLarge(center, width * 0.6);
-  letter = new Letter17(center, width * 0.6);
+  // letter = new Letter17(center, width * 0.6);
+  letter = new Letter2017(center, width * 0.8);
 
   // Add small D
   letter.setCircleRatio(0.9);
