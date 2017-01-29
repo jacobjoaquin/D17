@@ -84,24 +84,36 @@ void circleFill(ArrayList<Circle> circleList) {
       Circle circle = new Circle(x, y, diameter);
 
       // Move to closest
-      // if (circleList.size() > 0) {
-      //   Circle closestCircle = circleList.get(0);
-      //   float closestDistance = circle.distToCircle(closestCircle);
-      //   for (int i = 1; i < circleList.size(); i++) {
-      //     Circle c = circleList.get(i);
-      //     float thisD = circle.distToCircle(c);
-      //     if (thisD < closestDistance) {
-      //       closestCircle = c;
-      //       closestDistance = thisD;
-      //     }
-      //   }
-      //   if (closestDistance > 0 && closestDistance < maxSize * 4) {
-      //     float angle = atan2(y - closestCircle.y, x - closestCircle.x);
-      //     PVector move = PVector.fromAngle(angle).mult(-closestDistance);
-      //     circle.x += move.x;
-      //     circle.y += move.y;
-      //   }
-      // }
+      if (circleList.size() > 0) {
+        Circle closestCircle = circleList.get(0);
+        PVector closestPoint = new PVector(closestCircle.x, closestCircle.y);
+        float closestDistance = circle.distToCircle(closestCircle);
+        for (int i = 1; i < circleList.size(); i++) {
+          Circle c = circleList.get(i);
+          float thisD = circle.distToCircle(c);
+          if (thisD < closestDistance) {
+            closestCircle = c;
+            closestPoint.set(c.x, c.y);
+            closestDistance = thisD;
+          }
+        }
+
+        // Check line closest distance
+        PVector nearest = getClosestPointOnSegment(0, 0, width, height, circle.x, circle.y);
+        float thisD = dist(nearest.x, nearest.y, circle.x, circle.y) - diameter * 0.5;
+        if (thisD < closestDistance) {
+          closestDistance = thisD;
+          closestPoint.set(nearest.x, nearest.y);
+        }
+
+        if (closestDistance > 0 && closestDistance < maxSize * 4) {
+          // float angle = atan2(y - closestCircle.y, x - closestCircle.x);
+          float angle = atan2(y - closestPoint.y, x - closestPoint.x);
+          PVector move = PVector.fromAngle(angle).mult(-closestDistance);
+          circle.x += move.x;
+          circle.y += move.y;
+        }
+      }
 
       // Set Style
       Style style = new Style();

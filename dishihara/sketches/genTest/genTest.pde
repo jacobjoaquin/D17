@@ -101,6 +101,7 @@ void draw() {
   // }
   // popStyle();
 
+  // Test closest line
   stroke(255, 32);
   line(0, 0, width, height);
 
