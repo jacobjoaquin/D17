@@ -94,9 +94,21 @@ void circleFill(ArrayList<Circle> circleList) {
       // Set Style
       Style style = new Style();
       style.fillColor = chooseColor(orange, orange2);
-      // if (letterDSmall.containsPoint(x, y, diameter * 0.25)) {
-      //   style.fillColor = chooseColor(pink, pink2);
+
+      // Color background circles
+      // if (letter.containsPoint(x, y, diameter * 0.5)) {
+      //   // style.fillColor = chooseColor(pink, pink2);
+      //   style.fillColor = pink2;
       // }
+
+      // Color from Image
+      int pixelIndex = (int) ((int) circle.x + (int) circle.y * width);
+      int pixel = pg.pixels[pixelIndex];
+      float b = brightness(pixel);
+      if (b < 30) {
+        style.fillColor = chooseColor(pink, pink2);
+      }
+
       style.doStroke = false;
       circle.style = style;
 
