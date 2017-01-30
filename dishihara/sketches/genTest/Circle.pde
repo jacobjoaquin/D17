@@ -55,37 +55,46 @@ void circleFill(ArrayList<Circle> circleList) {
     float diameter = width;
 
     // Get nearest
-    float d = width;
-    float overlapRatio = 1.0;
+    PVector closestPoint = new PVector();
+    float closestDistance = Float.MAX_VALUE;
+    float closestAngle = 0;
 
     for (Circle c : circleList) {
-      float thisD = dist(x, y, c.x, c.y) - c.diameter * 0.5 * overlapRatio;
-      if (thisD < d) {
-        d = thisD;
+      float d = dist(x, y, c.x, c.y) - c.diameter * 0.5;
+      if (d < closestDistance) {
+        closestAngle = atan2(c.y - y, c.x - x);
+        PVector tangent = PVector.fromAngle(closestAngle + PI).mult(c.diameter * 0.5);
+        closestDistance = d;
+        closestPoint.set(c.x, c.y).add(tangent);
       }
     }
 
-    if (d >= minSize) {
-      diameter = min(d * 2, random(minSize, maxSize));
-      diameter = min(diameter, maxSize);
+    // for (Circle c : circleList) {
+    PVector nearest = vectorGraphic.getClosestPoint(x, y);
+    float d = dist(nearest.x, nearest.y, x, y);
+    if (d < closestDistance) {
+      closestAngle = atan2(nearest.y - y, nearest.x - x);
+      closestDistance = d;
+      closestPoint.set(nearest.x, nearest.y);
+    }
+
+    // Create Circle
+    if (closestDistance >= minSize) {
+      // Debug
+      // if (closestDistance < maxSize * 2) {
+      //   ellipse(closestPoint.x, closestPoint.y, 5, 5);
+      //   line(x, y, closestPoint.x, closestPoint.y);
+      // }
+
+      diameter = random(minSize, maxSize);
+      diameter = min(diameter, closestDistance * 2);
       Circle circle = new Circle(x, y, diameter);
 
-
-      // Move to closest
+      // Move to closestPoint
       if (circleList.size() > 0) {
-        Circle closestCircle = circleList.get(0);
-        float closestDistance = circle.distToCircle(closestCircle);
-        for (int i = 1; i < circleList.size(); i++) {
-          Circle c = circleList.get(i);
-          float thisD = circle.distToCircle(c);
-          if (thisD < closestDistance) {
-            closestCircle = c;
-            closestDistance = thisD;
-          }
-        }
-        if (closestDistance > 0 && closestDistance < maxSize * 4) {
-          float angle = atan2(y - closestCircle.y, x - closestCircle.x);
-          PVector move = PVector.fromAngle(angle).mult(-closestDistance);
+        // Move circle
+        if (closestDistance > 0 && closestDistance < maxSize * 2) {
+          PVector move = PVector.fromAngle(closestAngle).mult(closestDistance - diameter * 0.5);
           circle.x += move.x;
           circle.y += move.y;
         }
@@ -101,23 +110,8 @@ void circleFill(ArrayList<Circle> circleList) {
       //   style.fillColor = pink2;
       // }
 
-      // Color from Image
-      // int pixelIndex = (int) ((int) circle.x + (int) circle.y * width);
-      // int pixel = pg.pixels[pixelIndex];
-      // float b = brightness(pixel);
-      // if (b < 30) {
-      //   style.fillColor = chooseColor(pink, pink2);
-      // }
-
-      // Color from PShape
-      // DOESN'T WORK
-      // boolean b = vg.contains(circle.x, circle.y);
-      // if (b) {
-      //   style.fillColor = chooseColor(pink, pink2);
-      // }
-
-
       style.doStroke = false;
+      // style.fillColor = color(style.fillColor, 128);  // Debug
       circle.style = style;
 
       circle.drawRatio = 0.95;
