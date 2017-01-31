@@ -1,13 +1,15 @@
 // DIShihara Generation Test
 
 // Settings
-float minSize = 5;
+float minSize = 10;
 float maxSize = 25;
-int nTries = 80000;
+int nTries = 100;
 color orange = color(255, 128, 0);
-color orange2 = color(255, 192, 64);
+// color orange2 = color(255, 192, 64);
+color orange2 = orange;
 color pink = color(251, 65, 236);
-color pink2 = color(250, 146, 231);
+// color pink2 = color(250, 146, 231);
+color pink2 = pink;
 String imgName = "./assets/bmlogofill.png";
 String vgName = "./assets/bmlogoTraced.svg";
 
@@ -53,17 +55,17 @@ void setup() {
   // Create Disorient "D" Goes Here
   // letter = new LetterDSmall(center, width * 0.6);
   // letter = new LetterDLarge(center, width * 0.6);
-  letter = new Letter17(center, width * 0.6);
-  // letter = new Letter2017(center, width * 0.8);
+  // letter = new Letter17(center, width * 0.6);
+  letter = new Letter2017(center, width * 0.8);
 
-  // Add small D
-  // letter.setCircleRatio(0.9);
-  // for (Circle c : letter.toCircleList()) {
-  //   c.style.doStroke = false;
-  //   // c.style.fillColor = chooseColor(pink, pink2);
-  //   c.style.fillColor = pink;
-  //   circleList.add(c);
-  // }
+  // Add Letter
+  letter.setCircleRatio(0.9);
+  for (Circle c : letter.toCircleList()) {
+    c.style.doStroke = false;
+    // c.style.fillColor = chooseColor(pink, pink2);
+    c.style.fillColor = pink;
+    circleList.add(c);
+  }
 
 
   // Create other circles
@@ -91,9 +93,9 @@ void draw() {
   // stroke(pink, 64);
   // strokeWeight(1);
   // vectorGraphic.displayLineList();
-  fill(pink);
-  noStroke();
-  vectorGraphic.display();
+  // fill(pink);
+  // noStroke();
+  // vectorGraphic.display();
 
   save("./output/latest.png");
   println("Render complete");
