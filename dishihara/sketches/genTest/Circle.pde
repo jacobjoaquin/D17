@@ -69,14 +69,14 @@ void circleFill(ArrayList<Circle> circleList) {
       }
     }
 
-    // for (Circle c : circleList) {
-    PVector nearest = vectorGraphic.getClosestPoint(x, y);
-    float d = dist(nearest.x, nearest.y, x, y);
-    if (d < closestDistance) {
-      closestAngle = atan2(nearest.y - y, nearest.x - x);
-      closestDistance = d;
-      closestPoint.set(nearest.x, nearest.y);
-    }
+    // lineList distance
+    // PVector nearest = vectorGraphic.getClosestPoint(x, y);
+    // float d = dist(nearest.x, nearest.y, x, y);
+    // if (d < closestDistance) {
+    //   closestAngle = atan2(nearest.y - y, nearest.x - x);
+    //   closestDistance = d;
+    //   closestPoint.set(nearest.x, nearest.y);
+    // }
 
     // Create Circle
     if (closestDistance >= minSize) {
@@ -113,8 +113,17 @@ void circleFill(ArrayList<Circle> circleList) {
       style.doStroke = false;
       // style.fillColor = color(style.fillColor, 128);  // Debug
       circle.style = style;
-
       circle.drawRatio = 0.95;
+
+      // Rings
+      // if (random(1.0) < 0.5) {
+      //   style.doFill = false;
+      //   style.doStroke = true;
+      //   style.weight = 4;
+      //   style.strokeColor = orange;
+      //   circle.drawRatio = 0.8;
+      // }
+
       circleList.add(circle);
       tryCount = 0;
     }
