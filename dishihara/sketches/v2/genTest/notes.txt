@@ -1,0 +1,30 @@
+1. 2.png and 3.png are the direction that I would
+like to explore now. I’d like to make the circles represent campers.
+In other words, each circle is a camper and the diameter of each
+circle is determined by age (or other parameter) of camper. This
+means that total # of circles around 200 all inclusive. I’ll provide
+list of 2016 campers. It would be nice to do with 2017 campers but
+we can start by testing concept with last year’s info. In 4 colors
+option, maybe lighter dots are women and lighter dots are men?
+
+2. For each upcoming tests please do 4 colors and 2 colors versions
+
+3. Show result on medium grey background as this will probably be
+the shirt color
+
+4. On this image http://www.ironicsans.com/images/ishi-middle.jpg
+(558kB)
+
+notice the lighter orange cluster of dots around the 7. They are
+shaping parts of a 2. Also notice the lighter 1 inside the 4. I
+like this subtle effect that adds depth, secrecy and a second reading
+to the overall design. Just wanted to draw your attention to those
+details. Let’s reflect on how we can use this, Since we're trying
+to stay at 4 or even 2 colors max we could maybe obtain this effect
+by grouping similar sized circles instead of adding 2 more colors.
+This relates to 1. above: Disorient is about codes and cyphers.
+
+5. Below is a crude rendering of how I see the design evolving.
+About 130 dots there, easy to imagine getting at 200 by filling the
+blanks. Let's increase the maximum circle size as shown below to
+give more range to the composition.
