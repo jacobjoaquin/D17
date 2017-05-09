@@ -35,9 +35,15 @@ void circleFill(ArrayList<Circle> circleList) {
     tryCount++;
 
     // Create circle
-    PVector p = PVector.fromAngle(random(TAU));
-    p.mult(random(width / 2.0 - maxSize));
-    // p.add(width / 2.0, height / 2.0);
+    PVector p;
+    boolean isInCircle = false;
+    do {
+      float s = width / 2.0;
+      p = new PVector(random(-s, s), random(-s, s));
+      float d = dist(p.x, p.y, 0, 0);
+      isInCircle = d < width / 2.0;
+    } while(!isInCircle);
+
     float x = p.x;
     float y = p.y;
     float diameter = width;
@@ -75,33 +81,23 @@ void circleFill(ArrayList<Circle> circleList) {
       // }
 
       diameter = random(minSize, maxSize);
-      diameter = min(diameter, closestDistance * 2);
+      diameter = min(diameter, closestDistance);
       Circle circle = new Circle(x, y, diameter);
 
       // Move to closestPoint
-      if (circleList.size() > 0) {
-        // Move circle
-        if (closestDistance > 0 && closestDistance < maxSize * 2) {
-          PVector move = PVector.fromAngle(closestAngle).mult(closestDistance - diameter * 0.5);
-          circle.x += move.x;
-          circle.y += move.y;
-        }
-      }
+      // if (circleList.size() > 0) {
+      //   // Move circle
+      //   if (closestDistance > 0 && closestDistance < maxSize * 2) {
+      //     PVector move = PVector.fromAngle(closestAngle).mult(closestDistance - diameter * 0.5);
+      //     circle.x += move.x;
+      //     circle.y += move.y;
+      //   }
+      // }
 
       // Set Style
       Style style = new Style();
-      style.fillColor = chooseColor(orange, orange2);
-
-      // // Color background circles
-      // if (letter.containsPoint(x, y, diameter * 0.5)) {
-      //   // style.fillColor = chooseColor(pink, pink2);
-      //   style.fillColor = pink2;
-      // }
-
       style.doStroke = false;
-      // style.fillColor = color(style.fillColor, 128);  // Debug
       circle.style = style;
-      circle.drawRatio = 0.95;
 
       circleList.add(circle);
       tryCount = 0;
