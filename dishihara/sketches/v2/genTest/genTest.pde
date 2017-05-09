@@ -3,7 +3,7 @@
 // Settings
 float minSize = 5;
 float maxSize = 25;
-int nTries = 1000;
+int nTries = 100;
 color orange = color(255, 128, 0);
 // color orange2 = orange;
 color orange2 = color(255, 192, 32);
@@ -23,7 +23,7 @@ PShape vg;
 int randomSeed = 2017;
 
 void settings() {
-  size(500, 500, P2D);
+  size(868, 985, P2D);
   pixelDensity(displayDensity());
 }
 
@@ -36,6 +36,7 @@ Odds of darker for d > odds of lighter for 17
 */
 
 void setup() {
+  img = loadImage("./assets/shirt.png");
   noLoop();
   randomSeed(randomSeed);
   PVector center = new PVector(width / 2.0, height / 2.0);
@@ -72,38 +73,39 @@ void setup() {
     if (insideD && inside17) {
       if (c.diameter <= 8) {
         c.style.fillColor = orange2;
-        } else {
-          if (random(1) < 0.8) {
+      } else {
+        if (random(1) < 0.8) {
           c.style.fillColor = pink2;
         } else {
           c.style.fillColor = pink;
-      }
-
         }
-        } else if (insideD) {
-          c.style.fillColor = pink;
-          } else if (inside17) {
-            if (random(1) < 0.8) {
-              c.style.fillColor = orange2;
-            }
-            } else {
-              if (random(1) < 0.9) {
-                c.style.fillColor = orange;
-                } else {
-                  c.style.fillColor = orange2;
-                }
-              }
-            }
 
-          }
+      }
+    } else if (insideD) {
+      c.style.fillColor = pink;
+    } else if (inside17) {
+      if (random(1) < 0.8) {
+        c.style.fillColor = orange2;
+      }
+    } else {
+      if (random(1) < 0.9) {
+        c.style.fillColor = orange;
+      } else {
+        c.style.fillColor = orange2;
+      }
+    }
+  }
 
-          void draw() {
-            background(212);
-            for (Circle c : circleList) {
-              c.display();
-            }
+}
 
-            save("./output/latest.png");
-            println("Number of circles: " + circleList.size());
-            println("Render complete");
-          }
+void draw() {
+  background(212);
+  image(img, 0, 0);
+  for (Circle c : circleList) {
+    c.display();
+  }
+
+  save("./output/latest.png");
+  println("Number of circles: " + circleList.size());
+  println("Render complete");
+}

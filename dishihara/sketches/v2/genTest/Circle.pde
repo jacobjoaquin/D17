@@ -106,5 +106,5 @@ void circleFill(ArrayList<Circle> circleList) {
       circleList.add(circle);
       tryCount = 0;
     }
-    } while (tryCount < nTries);
-  }
+  } while (tryCount < nTries);
+}
