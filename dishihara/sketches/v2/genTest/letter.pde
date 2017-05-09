@@ -103,6 +103,19 @@ class LetterDLarge extends Letter {
   }
 }
 
+class Letter17Alt extends Letter {
+  Letter17Alt(PVector position, float letterWidth) {
+    letter.add("xx  xxxxx ");
+    letter.add("xxx xxxxxx");
+    letter.add(" xx     xx");
+    letter.add(" xx     xx");
+    letter.add(" xx     xx");
+    letter.add(" xx     xx");
+    letter.add(" xx     xx");
+    init(position, letterWidth);
+  }
+}
+
 
 class Letter17 extends Letter {
   Letter17(PVector position, float letterWidth) {

@@ -1,11 +1,10 @@
 // DIShihara Generation Test
 
 // Settings
-float minSize = 5;
-float maxSize = 25;
+float minSize = 30;
+float maxSize = 30;
 int nTries = 100;
 color orange = color(255, 128, 0);
-// color orange2 = orange;
 color orange2 = color(255, 192, 32);
 color pink = color(251, 65, 236);
 color pink2 = color(250, 146, 231);
@@ -17,7 +16,6 @@ Letter letterD;
 Letter letter17;
 PImage img;
 PGraphics pg;
-PShape vg;
 
 // Seed
 int randomSeed = 2017;
@@ -27,41 +25,32 @@ void settings() {
   pixelDensity(displayDensity());
 }
 
-/*
-Create D
-Create 17
-Do the circle fill
-Color Circles
-Odds of darker for d > odds of lighter for 17
-*/
-
 void setup() {
   img = loadImage("./assets/shirt.png");
   noLoop();
   randomSeed(randomSeed);
-  PVector center = new PVector(width / 2.0, height / 2.0);
+  PVector center = new PVector(0, 0);
   circleList = new ArrayList<Circle>();
 
   // Create D and 17
-  // letter = new LetterDLarge(letterCenter, width * 0.6);
   letterD = new LetterDLarge(center, width * 0.6);
-  letter17 = new Letter17(center, width * 0.6);
+  letter17 = new Letter17Alt(center, width * 0.6);
 
-  // Add Letter
+  // Add Letters
   float circleRatio = 0.9;
   letterD.setCircleRatio(circleRatio);
   letter17.setCircleRatio(circleRatio);
-  // for (Circle c : letter.toCircleList()) {
-  //   c.style.doStroke = false;
-  //   // c.style.fillColor = chooseColor(pink, pink2);
-  //   c.style.fillColor = pink;
-  //   // circleList.add(c);
-  // }
-
+  for (Circle c : letterD.toCircleList()) {
+    c.style.doStroke = false;
+  }
+  for (Circle c : letter17.toCircleList()) {
+    c.style.doStroke = false;
+  }
 
   // Create other circles
   circleFill(circleList);
 
+  // Update colors
   for (Circle c : circleList) {
     boolean insideD = letterD.containsPoint(c.x, c.y, c.diameter * 0.5);
     boolean inside17 = letter17.containsPoint(c.x, c.y, c.diameter * 0.5);
@@ -74,7 +63,7 @@ void setup() {
       if (c.diameter <= 8) {
         c.style.fillColor = orange2;
       } else {
-        if (random(1) < 0.8) {
+        if (random(1) < 1) {
           c.style.fillColor = pink2;
         } else {
           c.style.fillColor = pink;
@@ -84,11 +73,11 @@ void setup() {
     } else if (insideD) {
       c.style.fillColor = pink;
     } else if (inside17) {
-      if (random(1) < 0.8) {
+      if (random(1) < 1) {
         c.style.fillColor = orange2;
       }
     } else {
-      if (random(1) < 0.9) {
+      if (random(1) < 1) {
         c.style.fillColor = orange;
       } else {
         c.style.fillColor = orange2;
@@ -99,13 +88,20 @@ void setup() {
 }
 
 void draw() {
-  background(212);
+  // Draw shirt image
   image(img, 0, 0);
+
+  // Draw circles
+  translate(width * 0.51, height * 0.35);
+  scale(0.35, 0.35);
   for (Circle c : circleList) {
     c.display();
   }
 
+  // Save
   save("./output/latest.png");
+
+  // Print information
   println("Number of circles: " + circleList.size());
   println("Render complete");
 }

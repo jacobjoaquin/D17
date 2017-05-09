@@ -37,7 +37,7 @@ void circleFill(ArrayList<Circle> circleList) {
     // Create circle
     PVector p = PVector.fromAngle(random(TAU));
     p.mult(random(width / 2.0 - maxSize));
-    p.add(width / 2.0, height / 2.0);
+    // p.add(width / 2.0, height / 2.0);
     float x = p.x;
     float y = p.y;
     float diameter = width;
