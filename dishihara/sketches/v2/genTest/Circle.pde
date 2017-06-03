@@ -46,7 +46,7 @@ void circleFill(ArrayList<Circle> circleList) {
 
     float x = p.x;
     float y = p.y;
-    float diameter = width;
+    float diameter = random(minSize, maxSize);
 
     // Get nearest
     PVector closestPoint = new PVector();
@@ -54,50 +54,26 @@ void circleFill(ArrayList<Circle> circleList) {
     float closestAngle = 0;
 
     for (Circle c : circleList) {
-      float d = dist(x, y, c.x, c.y) - c.diameter * 0.5;
+      float d = dist(x, y, c.x, c.y) - diameter / 2.0 - c.diameter / 2.0;
       if (d < closestDistance) {
-        closestAngle = atan2(c.y - y, c.x - x);
-        PVector tangent = PVector.fromAngle(closestAngle + PI).mult(c.diameter * 0.5);
         closestDistance = d;
-        closestPoint.set(c.x, c.y).add(tangent);
       }
     }
-
-    // lineList distance
-    // PVector nearest = vectorGraphic.getClosestPoint(x, y);
-    // float d = dist(nearest.x, nearest.y, x, y);
-    // if (d < closestDistance) {
-    //   closestAngle = atan2(nearest.y - y, nearest.x - x);
-    //   closestDistance = d;
-    //   closestPoint.set(nearest.x, nearest.y);
-    // }
-
     // Create Circle
     if (closestDistance >= minSize) {
-      // Debug
-      // if (closestDistance < maxSize * 2) {
-      //   ellipse(closestPoint.x, closestPoint.y, 5, 5);
-      //   line(x, y, closestPoint.x, closestPoint.y);
-      // }
-
       diameter = random(minSize, maxSize);
+      if (letterD.containsPoint(x, y) || letter17.containsPoint(x, y)) {
+        diameter = random(minSize, minSize * 1.2);
+        diameter = minSize;
+      }
       diameter = min(diameter, closestDistance);
       Circle circle = new Circle(x, y, diameter);
-
-      // Move to closestPoint
-      // if (circleList.size() > 0) {
-      //   // Move circle
-      //   if (closestDistance > 0 && closestDistance < maxSize * 2) {
-      //     PVector move = PVector.fromAngle(closestAngle).mult(closestDistance - diameter * 0.5);
-      //     circle.x += move.x;
-      //     circle.y += move.y;
-      //   }
-      // }
 
       // Set Style
       Style style = new Style();
       style.doStroke = false;
       circle.style = style;
+      circle.drawRatio = 1.85;
 
       circleList.add(circle);
       tryCount = 0;

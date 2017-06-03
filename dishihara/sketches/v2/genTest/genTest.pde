@@ -1,9 +1,9 @@
 // DIShihara Generation Test
 
 // Settings
-float minSize = 20;
-float maxSize = 50;
-int nTries = 100;
+float minSize = 18;
+float maxSize = 40;
+int nTries = 1000;
 color orange = color(255, 128, 0);
 color orange2 = color(255, 192, 32);
 color pink = color(251, 65, 236);
